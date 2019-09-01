@@ -22,19 +22,16 @@ pub fn roman_to_int(number: &str) -> Option<i32> {
 
     let mut out: i32 = 0;
     let mut prev = 0;
-    for conv in number.chars().map(|c| convert(c)) {
-        match conv {
-            Some(v) => {
-                if v > prev {
-                    out -= prev;
-                }
-                else {
-                    out += prev
-                }
-                prev = v;
-            },
-            None => return None
-        };
+    for res in number.chars().map(convert) {
+        let v = res?;
+        if v > prev {
+            out -= prev;
+        }
+        else {
+            out += prev
+        }
+        prev = v;
+    
     }
     out += prev;
     Some(out)
