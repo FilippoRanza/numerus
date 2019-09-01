@@ -12,11 +12,45 @@ static _LOWER_TENS : &[&'static str] = &["", "x", "xx", "xxx", "xl", "l", "lx", 
 static _LOWER_HUNDREDS : &[&'static str] = &["", "c", "cc", "ccc", "cd", "d", "dc", "dcc", "dccc", "cm", "m"];
 static _LOWER_CONVERT: &[&[&'static str]] = &[_LOWER_HUNDREDS, _LOWER_TENS, _LOWER_UNITS];
 
-
+/// 
+/// Convert the given numer into a lowercase roman 
+/// numeral. This function fails if the given numer 
+/// is not representable in the roman numerical system
+/// (i.e. number < 0)
+///
+/// ```
+///     use numerus::int_to_roman_lower;
+///     
+///     let wrong_number = -45;
+///     match int_to_roman_lower(wrong_number) {
+///         Some(_) => assert!(false),
+///         None => assert!(true)
+///     };
+/// 
+/// ``` 
 pub fn int_to_roman_lower(number: i32) -> Option<String> {
     convertion_engine(number, _LOWER_CONVERT, 'm')
 }
 
+
+
+/// 
+/// Convert the given numer into an upper roman 
+/// numeral. This function fails if the given numer 
+/// is not representable in the roman numerical system
+/// (i.e. number <= 0)
+///
+/// ```
+///     use numerus::int_to_roman_lower;
+///     
+/// 
+///     let wrong_number = 0;
+///     match int_to_roman_lower(wrong_number) {
+///         Some(_) => assert!(false),
+///         None => assert!(true)
+///     };
+/// 
+/// ``` 
 pub fn int_to_roman_upper(number: i32) -> Option<String> {
     convertion_engine(number, _UPPER_CONVERT, 'M')
 }
