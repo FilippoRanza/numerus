@@ -7,13 +7,29 @@
 /// The function fails if any invalid character 
 /// is meet.
 /// 
+/// An error example
 /// ```
 ///     use numerus::roman_to_int;
 /// 
+///     /*
+///         K is not a symbol in the
+///         roman numerical system
+///     */
 ///     let wrong_roman = "XCK";
 ///     match roman_to_int(wrong_roman) {
 ///         Some(_) => assert!(false),
 ///         None => assert!(true)
+///     }
+/// ```
+/// 
+/// A correct convertion
+/// ```
+///     use numerus::roman_to_int;
+///     
+///     let wrong_roman = "MCMLXIX";
+///     match roman_to_int(wrong_roman) {
+///         Some(arabic) => assert_eq!(1969, arabic),
+///         None => assert!(false)
 ///     }
 /// 
 /// ```

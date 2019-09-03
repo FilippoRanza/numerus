@@ -16,16 +16,33 @@ static _LOWER_CONVERT: &[&[&'static str]] = &[_LOWER_HUNDREDS, _LOWER_TENS, _LOW
 /// Convert the given numer into a lowercase roman 
 /// numeral. This function fails if the given numer 
 /// is not representable in the roman numerical system
-/// (i.e. number < 0)
+/// (i.e. number <= 0).
 ///
+/// An error example
 /// ```
 ///     use numerus::int_to_roman_lower;
 ///     
+///     /*
+///         It is not possible to represent 
+///         a negative numer in the roman 
+///         numerical system
+///     */
 ///     let wrong_number = -45;
 ///     match int_to_roman_lower(wrong_number) {
 ///         Some(_) => assert!(false),
 ///         None => assert!(true)
 ///     };
+/// ```
+/// 
+/// A correct convertion
+/// ```
+///     use numerus::int_to_roman_lower;
+/// 
+///     let convertible_number = 39;
+///     match int_to_roman_lower(convertible_number) {
+///         Some(roman) => assert_eq!(roman, "xxxix"),
+///         None => assert!(false)
+///     };  
 /// 
 /// ``` 
 pub fn int_to_roman_lower(number: i32) -> Option<String> {
@@ -35,20 +52,36 @@ pub fn int_to_roman_lower(number: i32) -> Option<String> {
 
 
 /// 
-/// Convert the given numer into an upper roman 
+/// Convert the given numer into an uppercase roman 
 /// numeral. This function fails if the given numer 
 /// is not representable in the roman numerical system
-/// (i.e. number <= 0)
-///
-/// ```
-///     use numerus::int_to_roman_lower;
-///     
+/// (i.e. number <= 0).
 /// 
+/// An error example
+/// ```
+///     use numerus::int_to_roman_upper;
+///     
+///     /*
+///       there's no representation for 0 
+///       in the roman numerical system
+///     */
 ///     let wrong_number = 0;
-///     match int_to_roman_lower(wrong_number) {
+///     match int_to_roman_upper(wrong_number) {
 ///         Some(_) => assert!(false),
 ///         None => assert!(true)
 ///     };
+/// ```
+/// 
+/// A correct convertion
+/// ```
+///     use numerus::int_to_roman_upper;
+/// 
+///     let convertible_number = 101;
+///     match int_to_roman_upper(convertible_number) {
+///         Some(roman) => assert_eq!(roman, "CI"),
+///         None => assert!(false)
+///     };
+/// 
 /// 
 /// ``` 
 pub fn int_to_roman_upper(number: i32) -> Option<String> {
